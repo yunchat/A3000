@@ -1,0 +1,37 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8765
+  },
+  "upstream": {
+    "api_base": "https://www.84x.cn/api",
+    "username": "frontend_local_data_platform",
+    "timeout_seconds": 20,
+    "cache_ttl_seconds": 60
+  },
+  "datasets": [
+    {
+      "id": "market.limit-up",
+      "name": "涨停池",
+      "pool_id": 2,
+      "enabled": true,
+      "parameters": {
+        "date": {
+          "type": "date",
+          "required": false,
+          "description": "复盘日期，格式 YYYY-MM-DD；省略时读取上游当前快照"
+        }
+      },
+      "test_cases": [
+        {
+          "id": "current-snapshot",
+          "params": {},
+          "expect": {
+            "data_type": "list",
+            "min_items": 0
+          }
+        }
+      ]
+    }
+  ]
+}
